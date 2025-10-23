@@ -7,13 +7,13 @@
     <style>
         @font-face {
             font-family: 'Louize';
-            src: url('./Louize-Bold.otf') format('opentype');
+            src: url('./MarlinSoft.otf') format('opentype');
             font-weight: bold;
         }
 
         @font-face {
             font-family: 'Helvetica';
-            src: url('./HelveticaNeueBold.otf') format('opentype');
+            src: url('./fonts/HelveticaNeueBold.otf') format('opentype');
             font-weight: bold;
         }
 
@@ -24,6 +24,8 @@
             --button-bg: #fff;
             --button-text: #000;
             --button-border: #000;
+            --footer-bg: #232323;
+            --footer-text: #fff;
             
             --letter-spacing-heading: 0px;
             --word-spacing-heading: 0px;
@@ -38,6 +40,8 @@
             --button-bg: #000;
             --button-text: #fff;
             --button-border: #000;
+            --footer-bg: #ECECEC;
+            --footer-text: #000;
         }
 
         * {
@@ -65,7 +69,6 @@
             justify-content: center;
             align-items: center;
             padding: 20px 40px;
-            border-bottom: 1px solid var(--text-color);
             background-color: var(--bg-color);
             transition: background-color 0.3s ease, border-color 0.3s ease;
             position: relative;
@@ -75,6 +78,18 @@
             font-size: 24px;
             font-weight: bold;
             letter-spacing: 2px;
+            /* Updated to accommodate image logo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-logo img {
+            height: 40px;
+            width: auto;
+            border-radius: 0;
+            margin: 0;
+            transition: filter 0.3s ease;
         }
 
         /* Position toggle button absolutely on the right side of nav */
@@ -161,11 +176,87 @@
             /* Added transition for smooth blur effect */
             transition: filter 0.1s ease-out;
         }
+
+        /* Added footer styling */
+        footer {
+            background-color: var(--bg-color);
+            padding: 60px 40px;
+            margin-top: 80px;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 40px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            font-family: 'Helvetica', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            color: var(--footer-text);
+        }
+
+        /* Added blue hover effect to footer links */
+        .footer-column h3:hover {
+            color: #007BFF;
+        }
+
+        /* Hide footer descriptions */
+        .footer-column p {
+            display: none;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-logo-container img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            margin: 0;
+            border-radius: 0;
+            /* Exclude footer logo from blur effect */
+            filter: none !important;
+        }
+
+        /* Added mobile responsive footer layout */
+        @media (max-width: 768px) {
+            .footer-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
     </style>
 </head>
 <body>
     <nav>
-        <div class="nav-logo">Excelsior</div>
+        <div class="nav-logo">
+            <img id="themeLogo" src="/logo-dark.svg" alt="Logo">
+        </div>
         <button class="theme-toggle" id="themeToggle">Light Mode</button>
     </nav>
 
@@ -181,7 +272,7 @@
                     Nuclear power is the use of nuclear reactions to produce electricity. Nuclear power can be obtained from nuclear fission, nuclear decay and nuclear fusion reactions. Presently, the vast majority of electricity from nuclear power is produced by nuclear fission of uranium and plutonium in nuclear power plants. Nuclear decay processes are used in niche applications such as radioisotope thermoelectric generators in some space probes such as Voyager 2.[1] Reactors producing controlled fusion power have been operated since 1958 but yet to generate net power and are not expected to be commercially available in the near future.[2]
                 </p>
 
-                <img src="https://pbs.twimg.com/media/G3hyI_bWkAEOvZ-?format=jpg&name=4096x4096" alt="Article image">
+                <img src="C:\Users\ayush\Downloads\videoframe_12029.png" alt="Article image">
 
                 <p>
                     The first nuclear power plant was built in the 1950s. The global installed nuclear capacity grew to 100 GW in the late 1970s, and then expanded during the 1980s, reaching 300 GW by 1990. The 1979 Three Mile Island accident in the United States and the 1986 Chernobyl disaster in the Soviet Union resulted in increased regulation and public opposition to nuclear power plants. Nuclear power plants supplied 2,602 terawatt hours (TWh) of electricity in 2023, equivalent to about 9% of global electricity generation,[3] and were the second largest low-carbon power source after hydroelectricity.
@@ -190,14 +281,40 @@
         </article>
     </div>
 
+    <!-- Added footer section with three columns and large logo -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>Learn more about our mission and values.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p>Get in touch with our team for inquiries.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Additional Information</h3>
+                    <p>Explore more resources and documentation.</p>
+                </div>
+            </div>
+            <div class="footer-logo-container">
+                <img id="footerLogo" src="/logo-dark.svg" alt="Footer Logo" class="no-blur">
+            </div>
+        </div>
+    </footer>
+
     <script>
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
+        const themeLogo = document.getElementById('themeLogo');
+        const footerLogo = document.getElementById('footerLogo');
 
         // Check for saved theme preference or default to dark mode
         const currentTheme = localStorage.getItem('theme') || 'dark-mode';
         body.classList.add(currentTheme);
         updateButtonText();
+        updateLogo();
 
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('light-mode');
@@ -205,14 +322,21 @@
             const theme = body.classList.contains('light-mode') ? 'light-mode' : 'dark-mode';
             localStorage.setItem('theme', theme);
             updateButtonText();
+            updateLogo();
         });
 
         function updateButtonText() {
             themeToggle.textContent = body.classList.contains('light-mode') ? 'Dark Mode' : 'Light Mode';
         }
 
+        function updateLogo() {
+            const isLightMode = body.classList.contains('light-mode');
+            themeLogo.src = isLightMode ? 'logo/logo-light.svg' : 'logo/logo-dark.svg';
+            footerLogo.src = isLightMode ? 'logo/logo-light.svg' : 'logo/logo-dark.svg';
+        }
+
         function applyScrollBlur() {
-            const elements = document.querySelectorAll('p, img, h1, .byline');
+            const elements = document.querySelectorAll('p:not(.no-blur), img:not(.no-blur), h1:not(.no-blur), .byline:not(.no-blur)');
             const viewportHeight = window.innerHeight;
             
             elements.forEach(element => {
